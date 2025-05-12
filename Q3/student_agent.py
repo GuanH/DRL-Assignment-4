@@ -29,7 +29,8 @@ class Actor(nn.Module):
 class Agent(object):
     """Agent that acts randomly."""
     def __init__(self):
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device("cpu")
         self.action_space = gym.spaces.Box(-1.0, 1.0, (21,), np.float64)
         self.actor = Actor().to(self.device)
         self.actor.load_state_dict(torch.load('model.pth'), map_location=self.device)
